@@ -56,7 +56,7 @@ void start_game()
         snake_map.redraw();
 
 				//faster
-        usleep(PAUSE_LENGTH);
+        usleep(PAUSE_LENGTH - snake.length*10000);
 
         snake.validate_direction();
     }
