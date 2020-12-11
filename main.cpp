@@ -26,7 +26,8 @@ bool is_game_end()
 {
     bool result = false;
     pair<int, int> snake_head = snake.snake_head;
-    if (snake_head.first < 0 || snake_head.first >= MAP_WIDTH || snake_head.second < 0 || snake_head.second >= MAP_HEIGHT)
+		// pass
+		if (snake_head.first < 0 || snake_head.first >= MAP_WIDTH || snake_head.second < 0 || snake_head.second >= MAP_HEIGHT)
     {
         result = true;
     }
@@ -54,6 +55,7 @@ void start_game()
         }
         snake_map.redraw();
 
+				//faster
         usleep(PAUSE_LENGTH);
 
         snake.validate_direction();

@@ -12,6 +12,18 @@
 #define SNAKE_HEAD_SOUTH '^'
 #define SNAKE_FOOD_CHAR '*'
 
+// BOMB
+#define SNAKE_BOMB_CHAR 'X'
+
+// MOUTH
+#define SNAKE_HEAD_WE '-'
+#define SNAKE_HEAD_NS 'l'
+
+// 2p
+#define MAP2_WIDTH 40
+#define MAP2_HEIGHT 40
+#define MAP2_END 50
+
 #define INITIAL_SNAKE_LENGTH 3
 
 #define PAUSE_LENGTH 1000 * 200 // 200 milliseconds

@@ -44,6 +44,7 @@ void SnakeMap::redraw(void)
     }
 }
 
+//bomb, wall
 void SnakeMap::update_snake_food(bool force_update)
 {
     if (snake->food_eaten || force_update)
@@ -74,6 +75,7 @@ void clear_map(char map_array[MAP_HEIGHT][MAP_WIDTH])
     }
 }
 
+//mouth
 void update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake)
 {
     char snake_head_char = SNAKE_CHAR;
