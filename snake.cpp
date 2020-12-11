@@ -92,18 +92,34 @@ void Snake::update_movement(void)
     enum Direction direction = get_direction();
     switch (direction)
     {
-    case West:
-        movement_part = make_pair(snake_head.first, snake_head.second - 1);
-        break;
+    case West:  
+				movement_part = make_pair(snake_head.first, snake_head.second - 1);
+				if(snake_head.second < 1)
+				{
+					movement_part = make_pair(snake_head.first, MAP_HEIGHT-1);
+				}
+				break;
     case North:
         movement_part = make_pair(snake_head.first - 1, snake_head.second);
-        break;
+		  	if(snake_head.first < 1)
+				{
+				  movement_part = make_pair(MAP_WIDTH - 1, snake_head.second);
+				}
+				break;
     case East:
         movement_part = make_pair(snake_head.first, snake_head.second + 1);
-        break;
+				if(snake_head.second >= MAP_HEIGHT-1)
+				{
+					movement_part = make_pair(snake_head.first, 0);
+				}
+				break;
     case South:
         movement_part = make_pair(snake_head.first + 1, snake_head.second);
-        break;
+			  if(snake_head.first >= MAP_WIDTH-1)
+				{
+				  movement_part = make_pair(0, snake_head.second);
+				}
+				break;
     }
     snake_head = movement_part;
     snake_parts.push_back(movement_part);
