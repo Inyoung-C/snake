@@ -16,8 +16,8 @@
 #define SNAKE_BOMB_CHAR 'X'
 
 // MOUTH
-#define SNAKE_HEAD_WE '-'
-#define SNAKE_HEAD_NS 'l'
+#define SNAKE_HEAD_WE '_'
+#define SNAKE_HEAD_NS '|'
 
 // 2p
 #define MAP2_WIDTH 40

@@ -12,13 +12,14 @@ public:
   pair<int, int> snake_food;
   void update_snake_food(bool force_update);
   void update_score();
+	void update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake);
 
 private:
   char map_array[MAP_HEIGHT][MAP_WIDTH];
   Snake *snake;
+	bool cnt;
 };
 
 void clear_map(char map_array[MAP_HEIGHT][MAP_WIDTH]);
-void update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake);
 
 #endif

@@ -15,6 +15,7 @@ SnakeMap::SnakeMap(Snake *snake)
     clear_map(this->map_array);
     srand(time(NULL));
     update_snake_food(true);
+		this->cnt = 0;
 }
 
 void SnakeMap::redraw(void)
@@ -76,25 +77,46 @@ void clear_map(char map_array[MAP_HEIGHT][MAP_WIDTH])
 }
 
 //mouth
-void update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake)
+void SnakeMap::update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake)
 {
-    char snake_head_char = SNAKE_CHAR;
+		char snake_head_char = SNAKE_CHAR;
     enum Direction direction = snake->get_direction();
-    switch (direction)
-    {
-    case West:
-        snake_head_char = SNAKE_HEAD_WEST;
-        break;
-    case North:
-        snake_head_char = SNAKE_HEAD_NORTH;
-        break;
-    case East:
-        snake_head_char = SNAKE_HEAD_EAST;
-        break;
-    case South:
-        snake_head_char = SNAKE_HEAD_SOUTH;
-        break;
-    }
+    if(this->cnt == 0) {
+			switch (direction)
+	    {
+		  case West:
+			  snake_head_char = SNAKE_HEAD_WEST;
+				break;
+		  case North:
+			   snake_head_char = SNAKE_HEAD_NORTH;
+				 break;
+		  case East:
+			   snake_head_char = SNAKE_HEAD_EAST;
+				 break;
+		  case South:
+			   snake_head_char = SNAKE_HEAD_SOUTH;
+				 break;
+			}
+			this->cnt = 1;
+		} else {
+			switch (direction)
+			{
+			case West:
+		    snake_head_char = SNAKE_HEAD_WE;
+			  break;
+		  case North:
+			  snake_head_char = SNAKE_HEAD_NS;
+			  break;
+			case East:
+		    snake_head_char = SNAKE_HEAD_WE;
+			  break;
+		  case South:
+			  snake_head_char = SNAKE_HEAD_NS;
+			  break;
+
+			}
+			this->cnt = 0;
+		}
     pair<int, int> snake_head = snake->snake_head;
     map_array[snake_head.first][snake_head.second] = snake_head_char;
 }
