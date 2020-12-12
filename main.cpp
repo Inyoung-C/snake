@@ -41,11 +41,13 @@ bool is_game_end()
 
 void game_over()
 {
+		snake.End_Move();
     cout << "GAME IS OVER" << endl;
 }
 
 void start_game()
 {
+	  snake.Start_Move();
     while (true)
     {
         snake.update_movement();
@@ -66,21 +68,19 @@ void start_game()
 int main()
 {
     initialize();
-		Intro *IntroMap = new Intro();
+		Intro *intro = new Intro(snake);
 		while (true) {
-    	switch (IntroMap->SelectMenu()) {
-				case 0:
-					start_game();
-					return 0;
+    	switch (intro->SelectMenu()) {
 				case 1:
 					start_game(); // 2p
-					return 0;
+					break;
 				case 2:
 					start_game(); // Rank
-					return 0;
+					break;
 				case 3:
-					return 0;
+					break;
 			}
 		}
+		input_enter_on();
     return 0;
 }

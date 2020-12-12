@@ -3,8 +3,9 @@
 
 #define MAP_WIDTH 20
 #define MAP_HEIGHT 20
+#define INTRO_HEIGHT 28
 #define MAP_CHAR '.'
-#define MAP_END 30
+#define MAP_END 5
 #define SNAKE_CHAR 'O'
 #define SNAKE_HEAD_WEST '>'
 #define SNAKE_HEAD_NORTH 'v'
@@ -22,7 +23,7 @@
 // 2p
 #define MAP2_WIDTH 40
 #define MAP2_HEIGHT 40
-#define MAP2_END 50
+#define MAP2_END 30
 
 #define INITIAL_SNAKE_LENGTH 3
 

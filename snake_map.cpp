@@ -21,10 +21,11 @@ SnakeMap::SnakeMap(Snake *snake)
 void SnakeMap::redraw(void)
 {
     clear_map(this->map_array);
-    for (int i = 0; i < MAP_END; i++)
-    {
-        cout << endl;
-    }
+//    for (int i = 0; i < MAP_END; i++)
+//    {
+//        cout << endl;
+//    }
+		system("clear");
     update_score();
     vector<pair<int, int>> snake_parts = snake->snake_parts;
     for (int i = 0; i < snake_parts.size(); i++)

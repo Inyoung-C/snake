@@ -5,16 +5,19 @@
 #include <utility>
 #include "snake_map.h"
 #include "macros.h"
+#include "intro.h"
 
 using namespace std;
 
 void *input_thread_work(void *arg)
 {
     struct Snake *snake = (struct Snake *)arg;
+//		struct Intro *intro = (struct Intro *)arg;
     while (true)
     {
         enum Direction direction = get_input();
         snake->update_next_direction(direction);
+//				intro->Update_Next_Direction(direction);
     }
 }
 
@@ -28,7 +31,7 @@ Snake::Snake(void)
     clear_snake_world();
     initialize_snake();
     sem_init(&snake_sema, 0, 1);
-    pthread_create(&input_thread, NULL, input_thread_work, this);
+//    pthread_create(&input_thread, NULL, input_thread_work, this);
 }
 
 void Snake::update_direction(enum Direction direction)
@@ -166,4 +169,12 @@ void Snake::initialize_snake(void)
         snake_world_array[snake_part.first][snake_part.second] = 1;
     }
     snake_head = snake_parts[snake_parts.size() - 1];
+}
+
+void Snake::Start_Move(void) {
+  pthread_create(&input_thread, NULL, input_thread_work, this);
+}
+
+void Snake::End_Move(void) {
+    pthread_join(input_thread, NULL);
 }
