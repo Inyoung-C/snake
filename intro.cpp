@@ -7,6 +7,21 @@
 #include "macros.h"
 #include "intro.h"
 
+using namespace std;
+
+Intro::Intro() {
+	
+}
 
 
-class Intro
+void Intro::DrawIntro() {
+
+}
+
+void Intro::DrawUserCursor(int &num) {
+
+}
+
+int Intro::SelectMenu() {
+	return 0;
+}

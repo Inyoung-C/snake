@@ -66,6 +66,21 @@ void start_game()
 int main()
 {
     initialize();
-    start_game();
+		Intro *IntroMap = new Intro();
+		while (true) {
+    	switch (IntroMap->SelectMenu()) {
+				case 0:
+					start_game();
+					return 0;
+				case 1:
+					start_game(); // 2p
+					return 0;
+				case 2:
+					start_game(); // Rank
+					return 0;
+				case 3:
+					return 0;
+			}
+		}
     return 0;
 }

@@ -1,11 +1,25 @@
-class Intro {
+#ifndef _intro_h
+#define _intro_h
+
+#include <iostream>
+#include "input.h"
+#include "macros.h"
+
+using namespace std;
+
+class Intro
+{
 	public:
 		Intro();
-		enum Direction get_direction();
+		void DrawIntro();
+		void DrawUserCursor(int &num);
+		int SelectMenu();
 };
 
-class Outro {
-	public:
-		Outro();
-		enum Direction get_direction();
-};
+//class Outro
+//{
+//	public:
+//		Outro();
+//};
+
+#endif
