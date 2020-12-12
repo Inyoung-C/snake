@@ -10,6 +10,7 @@
 #include "snake_map.h"
 #include <utility>
 #include "macros.h"
+#include "intro.h"
 
 using namespace std;
 
