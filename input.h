@@ -1,6 +1,8 @@
 #ifndef _input_h
 #define _input_h
 
+#include <conio.h>
+#include <Windows.h>
 
 enum Direction {
     Error = -1,
@@ -8,12 +10,10 @@ enum Direction {
     North = 1,
     East = 2,
     South = 3,
-		Space = 4
+	Space = 4
 };
 
 void input_init(void);
-void input_enter_off(void);
-void input_enter_on(void);
 enum Direction get_input(void);
 
 #endif

@@ -4,6 +4,7 @@
 #include "snake.h"
 #include "macros.h"
 
+
 class SnakeMap
 {
 public:

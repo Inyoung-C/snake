@@ -27,6 +27,6 @@
 
 #define INITIAL_SNAKE_LENGTH 3
 
-#define PAUSE_LENGTH 1000 * 200 // 200 milliseconds
+#define PAUSE_LENGTH 200 // 200 milliseconds
 
 #endif

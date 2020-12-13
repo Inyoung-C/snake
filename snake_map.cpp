@@ -1,9 +1,7 @@
 #include "snake_map.h"
-#include <pthread.h>
 #include <iostream>
 #include <vector>
 #include <utility>
-#include <stdlib.h>
 #include <time.h>
 #include "macros.h"
 
@@ -15,17 +13,14 @@ SnakeMap::SnakeMap(Snake *snake)
     clear_map(this->map_array);
     srand(time(NULL));
     update_snake_food(true);
-		this->cnt = 0;
+	this->cnt = 0;
 }
 
 void SnakeMap::redraw(void)
 {
     clear_map(this->map_array);
-//    for (int i = 0; i < MAP_END; i++)
-//    {
-//        cout << endl;
-//    }
-		system("clear");
+	system("cls");
+    update_score();
     update_score();
     vector<pair<int, int>> snake_parts = snake->snake_parts;
     for (int i = 0; i < snake_parts.size(); i++)
@@ -80,7 +75,7 @@ void clear_map(char map_array[MAP_HEIGHT][MAP_WIDTH])
 //mouth
 void SnakeMap::update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake)
 {
-		char snake_head_char = SNAKE_CHAR;
+	char snake_head_char = SNAKE_CHAR;
     enum Direction direction = snake->get_direction();
     if(this->cnt == 0) {
 			switch (direction)

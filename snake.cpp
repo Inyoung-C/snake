@@ -1,5 +1,4 @@
 #include "snake.h"
-#include <pthread.h>
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -8,18 +7,6 @@
 #include "intro.h"
 
 using namespace std;
-
-void *input_thread_work(void *arg)
-{
-    struct Snake *snake = (struct Snake *)arg;
-//		struct Intro *intro = (struct Intro *)arg;
-    while (true)
-    {
-        enum Direction direction = get_input();
-        snake->update_next_direction(direction);
-//				intro->Update_Next_Direction(direction);
-    }
-}
 
 Snake::Snake(void)
 {
@@ -30,64 +17,54 @@ Snake::Snake(void)
     length = INITIAL_SNAKE_LENGTH;
     clear_snake_world();
     initialize_snake();
-    sem_init(&snake_sema, 0, 1);
-//    pthread_create(&input_thread, NULL, input_thread_work, this);
 }
 
-void Snake::update_direction(enum Direction direction)
+void Snake::update_direction()
 {
-    sem_wait(&this->snake_sema);
-    switch (direction)
+    enum Direction input = Error;
+    if (GetAsyncKeyState(0x57) & 0x8000) input = North;
+    else if (GetAsyncKeyState(0x53) & 0x8000) input = South;
+    else if (GetAsyncKeyState(0x41) & 0x8000) input = West;
+    else if (GetAsyncKeyState(0x44) & 0x8000) input = East;
+    else input = Error;
+        
+    switch (input)
     {
     case West:
         if (this->direction != East)
         {
-            this->direction = direction;
+            this->direction = input;
         }
         break;
     case North:
         if (this->direction != South)
         {
-            this->direction = direction;
+            this->direction = input;
         }
         break;
     case East:
         if (this->direction != West)
         {
-            this->direction = direction;
+            this->direction = input;
         }
         break;
     case South:
         if (this->direction != North)
         {
-            this->direction = direction;
+            this->direction = input;
         }
         break;
+    default:
+        break;
     }
-    sem_post(&this->snake_sema);
 }
 
-void Snake::update_next_direction(enum Direction direction)
-{
-    this->next_direction = direction;
-}
 
 enum Direction Snake::get_direction(void)
 {
-    enum Direction result = East;
-    sem_wait(&this->snake_sema);
-    result = this->direction;
-    sem_post(&this->snake_sema);
-    return result;
+    return this->direction;
 }
 
-void Snake::validate_direction(void)
-{
-    if (next_direction != Error)
-    {
-        update_direction(next_direction);
-    }
-}
 
 void Snake::update_movement(void)
 {
@@ -169,12 +146,4 @@ void Snake::initialize_snake(void)
         snake_world_array[snake_part.first][snake_part.second] = 1;
     }
     snake_head = snake_parts[snake_parts.size() - 1];
-}
-
-void Snake::Start_Move(void) {
-  pthread_create(&input_thread, NULL, input_thread_work, this);
-}
-
-void Snake::End_Move(void) {
-    pthread_join(input_thread, NULL);
 }
