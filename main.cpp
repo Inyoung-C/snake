@@ -9,66 +9,75 @@
 #include "macros.h"
 #include "intro.h"
 #include <Windows.h>
+#include "rank.h"
 
 using namespace std;
 
 Snake snake;
 SnakeMap snake_map(&snake);
+Rank rank1;
 
-void initialize()
+void Initialize()
 {
-    input_init();
+    Input_Init();
 }
 
-bool is_game_end()
+bool Is_Game_End()
 {
     bool result = false;
     pair<int, int> snake_head = snake.snake_head;
-    if (snake.is_dead)
-    {
+    if (snake.is_dead) {
         result = true;
     }
     return result;
 }
 
-void game_over()
-{
-    cout << "GAME IS OVER" << endl;
-}
 
-void start_game()
+void Start_Game()
 {
-    while (true)
-    {
-        snake.update_direction();
-        snake.update_movement();
-        if (is_game_end())
-        {
-            game_over();
+    Outro *outro;
+    while (true) {
+        snake.Update_Direction();
+        snake.Update_Movement();
+        if (Is_Game_End()) {
+            outro = new Outro(snake.length);
+            rank1.Draw_Rank(); // Rank
+            while (true) {
+                switch (outro->Select_Menu())
+                {
+                case 1:
+                    Start_Game();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                }
+            }
             break;
         }
-        snake_map.redraw();
+        snake_map.Redraw();
 
-				//faster
-        Sleep(PAUSE_LENGTH - snake.length*5);
+        Sleep(PAUSE_LENGTH - snake.length*5);   //faster
     }
 }
 
 int main()
 {
-    initialize();
-		Intro *intro = new Intro();
-		while (true) {
-    	switch (intro->SelectMenu()) {
-				case 1:
-					start_game(); // 2p
-					break;
-				case 2:
-					start_game(); // Rank
-					break;
-				case 3:
-					break;
-			}
-		}
+    Initialize();
+	Intro *intro = new Intro;
+	while (true) {
+        switch (intro->Select_Menu())
+        {
+	    case 1:
+		    Start_Game();
+	    	break;
+	    case 2:
+	    	rank1.Draw_Rank(); // Rank
+	    	break;
+	    case 3:
+	    	return 0;
+	    }
+	}
     return 0;
 }

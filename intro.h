@@ -9,19 +9,22 @@ using namespace std;
 
 class Intro
 {
-	public:
-		Intro();
-		void DrawIntro();
-		void DrawUserCursor(int num);
-		int SelectMenu();
-	private:
-		string intro_map[INTRO_HEIGHT];
+public:
+	Intro();
+	void Draw_Tro(int num, int cnt);
+	int Select_Menu();
+private:
+	string intro_map[INTRO_HEIGHT];
 };
 
-//class Outro
-//{
-//	public:
-//		Outro();
-//};
+class Outro : public Intro
+{
+public:
+	Outro();
+	void Draw_Tro(int num, int cnt);
+	int Select_Menu();
+private:
+	string outro_map[OUTRO_HEIGHT];
+};
 
 #endif

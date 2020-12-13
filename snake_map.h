@@ -9,18 +9,18 @@ class SnakeMap
 {
 public:
   SnakeMap(Snake *snake);
-  void redraw();
+  void Redraw();
   pair<int, int> snake_food;
-  void update_snake_food(bool force_update);
-  void update_score();
-	void update_snake_head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake);
+  void Update_Snake_Food(bool force_update);
+  void Update_Score();
+  void Update_Snake_Head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *snake);
 
 private:
   char map_array[MAP_HEIGHT][MAP_WIDTH];
   Snake *snake;
-	bool cnt;
+  bool cnt;
 };
 
-void clear_map(char map_array[MAP_HEIGHT][MAP_WIDTH]);
+void Clear_Map(char map_array[MAP_HEIGHT][MAP_WIDTH]);
 
 #endif

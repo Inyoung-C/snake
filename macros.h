@@ -3,7 +3,9 @@
 
 #define MAP_WIDTH 20
 #define MAP_HEIGHT 20
-#define INTRO_HEIGHT 28
+#define INTRO_HEIGHT 30
+#define OUTRO_HEIGHT 30
+#define RANK_HEIGHT 30
 #define MAP_CHAR '.'
 #define MAP_END 5
 #define SNAKE_CHAR 'O'

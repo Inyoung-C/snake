@@ -4,7 +4,8 @@
 #include <conio.h>
 #include <Windows.h>
 
-enum Direction {
+enum Direction
+{
     Error = -1,
     West = 0,
     North = 1,
@@ -13,7 +14,7 @@ enum Direction {
 	Space = 4
 };
 
-void input_init(void);
-enum Direction get_input(void);
+void Input_Init(void);
+enum Direction Get_Input(void);
 
 #endif
