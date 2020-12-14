@@ -44,7 +44,7 @@ void Start_Game()
         (*snake).Update_Movement();
         if (Is_Game_End()) {
             outro = new Outro((*snake).length);
-            rank1.Draw_Rank(); // Rank
+            rank1.Push_Score((*snake).length); // Rank
             delete(snake_map);
             while (true) {
                 switch (outro->Select_Menu())
@@ -53,7 +53,7 @@ void Start_Game()
                     Start_Game();
                     return;
                 case 2:
-                    rank1.Draw_Rank(); // Rank
+                    rank1.Show_Score(); // Rank
                     break;
                 case 3:
                     return;
@@ -78,7 +78,7 @@ int main()
 		    Start_Game();
             return 0;
 	    case 2:
-	    	rank1.Select_Menu(); // Rank
+	    	rank1.Show_Score(); // Rank
 	    	break;
 	    case 3:
 	    	return 0;

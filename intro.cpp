@@ -10,7 +10,7 @@
 using namespace std;
 
 string init_intro_map1[INTRO_HEIGHT] =
-{"                                                                                   ",
+{ "                                                                                   ",
  "-----------------------------------------------------------------------------------",
  "-                                                                                 -",
  "-                                                  XXXXXXXXXXXX                   -",
@@ -41,7 +41,7 @@ string init_intro_map1[INTRO_HEIGHT] =
  "-----------------------------------------------------------------------------------" };
 
 string init_intro_map2[INTRO_HEIGHT] =
-{"                                                                                   ",
+{ "                                                                                   ",
  "-----------------------------------------------------------------------------------",
  "-                                                                                 -",
  "-                                                  XXXXXXXXXXXX                   -",
@@ -234,7 +234,7 @@ int Intro::Select_Menu()
 			input = Space;
 		}
 
-		if(input == Space) {
+		if (input == Space) {
 			switch (num)
 			{
 			case 1:
@@ -245,7 +245,7 @@ int Intro::Select_Menu()
 				return 3;	//QUIT
 			}
 		}
-		else { 
+		else {
 			switch (input)
 			{
 			case North:
