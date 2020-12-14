@@ -16,11 +16,15 @@ SnakeMap::SnakeMap(Snake *snake)
 	this->cnt = 0;
 }
 
+SnakeMap::~SnakeMap()
+{
+    delete(snake);
+}
+
 void SnakeMap::Redraw(void)
 {
     Clear_Map(this->map_array);
 	system("cls");
-    Update_Score();
     Update_Score();
     vector<pair<int, int>> snake_parts = snake->snake_parts;
     for (int i = 0; i < snake_parts.size(); i++) {
@@ -70,41 +74,41 @@ void SnakeMap::Update_Snake_Head(char map_array[MAP_HEIGHT][MAP_WIDTH], Snake *s
 	char snake_head_char = SNAKE_CHAR;
     enum Direction direction = snake->Get_Direction();
     if(this->cnt == 0) {
-		switch (direction)
+			switch (direction)
 	    {
-		case West:
-			snake_head_char = SNAKE_HEAD_WEST;
-			break;
-		case North:
-			snake_head_char = SNAKE_HEAD_NORTH;
-			break;
-		case East:
-			snake_head_char = SNAKE_HEAD_EAST;
-			break;
-		case South:
-			snake_head_char = SNAKE_HEAD_SOUTH;
-			break;
-		}
-		this->cnt = 1;
-	}
-    else {
-		switch (direction)
-		{
-		case West:
+		  case West:
+			  snake_head_char = SNAKE_HEAD_WEST;
+				break;
+		  case North:
+			   snake_head_char = SNAKE_HEAD_NORTH;
+				 break;
+		  case East:
+			   snake_head_char = SNAKE_HEAD_EAST;
+				 break;
+		  case South:
+			   snake_head_char = SNAKE_HEAD_SOUTH;
+				 break;
+			}
+			this->cnt = 1;
+		} else {
+			switch (direction)
+			{
+			case West:
 		    snake_head_char = SNAKE_HEAD_WE;
-			break;
-		case North:
-			snake_head_char = SNAKE_HEAD_NS;
-			break;
-		case East:
+			  break;
+		  case North:
+			  snake_head_char = SNAKE_HEAD_NS;
+			  break;
+			case East:
 		    snake_head_char = SNAKE_HEAD_WE;
-			break;
-		case South:
-			snake_head_char = SNAKE_HEAD_NS;
-			break;
+			  break;
+		  case South:
+			  snake_head_char = SNAKE_HEAD_NS;
+			  break;
+
+			}
+			this->cnt = 0;
 		}
-		this->cnt = 0;
-	}
     pair<int, int> snake_head = snake->snake_head;
     map_array[snake_head.first][snake_head.second] = snake_head_char;
 }

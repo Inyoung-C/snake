@@ -4,8 +4,7 @@
 #include <conio.h>
 #include <Windows.h>
 
-enum Direction
-{
+enum Direction {
     Error = -1,
     West = 0,
     North = 1,

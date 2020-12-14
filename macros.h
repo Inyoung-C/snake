@@ -22,13 +22,8 @@
 #define SNAKE_HEAD_WE '_'
 #define SNAKE_HEAD_NS '|'
 
-// 2p
-#define MAP2_WIDTH 40
-#define MAP2_HEIGHT 40
-#define MAP2_END 30
-
 #define INITIAL_SNAKE_LENGTH 3
 
-#define PAUSE_LENGTH 200 // 200 milliseconds
+#define PAUSE_LENGTH 100
 
 #endif

@@ -19,6 +19,11 @@ Snake::Snake(void)
     Initialize_Snake();
 }
 
+Snake::~Snake(void)
+{
+
+}
+
 void Snake::Update_Direction()
 {
     enum Direction input = Error;
@@ -26,26 +31,30 @@ void Snake::Update_Direction()
     if (GetAsyncKeyState(0x53) != 0x0000) input = South;
     if (GetAsyncKeyState(0x41) != 0x0000) input = West;
     if (GetAsyncKeyState(0x44) != 0x0000) input = East;
-
+        
     switch (input)
     {
     case West:
-        if (this->direction != East) {
+        if (this->direction != East)
+        {
             this->direction = input;
         }
         break;
     case North:
-        if (this->direction != South) {
+        if (this->direction != South)
+        {
             this->direction = input;
         }
         break;
     case East:
-        if (this->direction != West) {
+        if (this->direction != West)
+        {
             this->direction = input;
         }
         break;
     case South:
-        if (this->direction != North) {
+        if (this->direction != North)
+        {
             this->direction = input;
         }
         break;
@@ -81,10 +90,10 @@ void Snake::Update_Movement(void)
 		break;
     case East:
         movement_part = make_pair(snake_head.first, snake_head.second + 1);
-		if(snake_head.second >= MAP_HEIGHT-1) {
-			movement_part = make_pair(snake_head.first, 0);
-		}
-		break;
+	    if(snake_head.second >= MAP_HEIGHT-1) {
+		    movement_part = make_pair(snake_head.first, 0);
+	    }
+	    break;
     case South:
         movement_part = make_pair(snake_head.first + 1, snake_head.second);
 		if(snake_head.first >= MAP_WIDTH-1) {
@@ -104,7 +113,8 @@ void Snake::Update_Movement(void)
         snake_parts.erase(snake_parts.begin());
     }
     int head_value = ++snake_world_array[snake_head.first][snake_head.second];
-    if (head_value > 1) {
+    if (head_value > 1)
+    {
         is_dead = true;
     }
 }

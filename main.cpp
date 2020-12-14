@@ -13,9 +13,11 @@
 
 using namespace std;
 
-Snake snake;
-SnakeMap snake_map(&snake);
+Snake *snake;
+SnakeMap *snake_map;
 Rank rank1;
+Outro* outro;
+
 
 void Initialize()
 {
@@ -25,8 +27,8 @@ void Initialize()
 bool Is_Game_End()
 {
     bool result = false;
-    pair<int, int> snake_head = snake.snake_head;
-    if (snake.is_dead) {
+    pair<int, int> snake_head = (*snake).snake_head;
+    if ((*snake).is_dead) {
         result = true;
     }
     return result;
@@ -35,30 +37,33 @@ bool Is_Game_End()
 
 void Start_Game()
 {
-    Outro *outro;
+    snake = new Snake();
+    snake_map = new SnakeMap(snake);
     while (true) {
-        snake.Update_Direction();
-        snake.Update_Movement();
+        (*snake).Update_Direction();
+        (*snake).Update_Movement();
         if (Is_Game_End()) {
-            outro = new Outro(snake.length);
-            rank1.Draw_Rank(); // Rank
+            outro = new Outro((*snake).length);
+            rank1.Push_Score((*snake).length); // Rank
+            delete(snake_map);
             while (true) {
                 switch (outro->Select_Menu())
                 {
                 case 1:
                     Start_Game();
-                    break;
+                    return;
                 case 2:
+                    rank1.Show_Score(); // Rank
                     break;
                 case 3:
-                    break;
+                    return;
                 }
             }
             break;
         }
-        snake_map.Redraw();
+        (*snake_map).Redraw();
 
-        Sleep(PAUSE_LENGTH - snake.length*5);   //faster
+        Sleep(PAUSE_LENGTH*4 - (*snake).length*10); //faster
     }
 }
 
@@ -71,9 +76,9 @@ int main()
         {
 	    case 1:
 		    Start_Game();
-	    	break;
+            return 0;
 	    case 2:
-	    	rank1.Draw_Rank(); // Rank
+	    	rank1.Show_Score(); // Rank
 	    	break;
 	    case 3:
 	    	return 0;
