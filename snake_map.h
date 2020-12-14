@@ -9,6 +9,7 @@ class SnakeMap
 {
 public:
   SnakeMap(Snake *snake);
+  ~SnakeMap();
   void Redraw();
   pair<int, int> snake_food;
   void Update_Snake_Food(bool force_update);

@@ -12,6 +12,7 @@ class Snake
 {
 public:
   Snake();
+  ~Snake();
   void Update_Direction();
   enum Direction Get_Direction();
   vector<pair<int, int>> snake_parts;

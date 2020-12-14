@@ -71,17 +71,79 @@ string init_intro_map2[INTRO_HEIGHT] =
  "-  Designed by YONG & SONG & YOUNG                                                -",
  "-----------------------------------------------------------------------------------" };
 
-Intro::Intro()
+string init_outro_map1[OUTRO_HEIGHT] =
+{"                                                                                   ",
+ "-----------------------------------------------------------------------------------",
+ "-                                                                                 -",
+ "-                                                                                 -",
+ "-          *********************                                                  -",
+ "-          *     GAME OVER!    *                                                  -",
+ "-          *********************                                                  -",
+ "-                                               XXXXXXXXXXXX                      -",
+ "-           SCORE :                       XXXXXXXXXXXXXXXXXXXXXX                  -",
+ "-                                     XXXXXXXXXXXXXXX     XXXXXXX                 -",
+ "-             RESTART             XXXXXXXXXXX               XXXXXXXX              -",
+ "-             RANK              XXXXXXXXXXXX               XXXXXXXXXXXX           -",
+ "-             EXIT             XXXXXXXXXX                  XXXXXXXXXXXXXXXX       -",
+ "-                                 XXXXXXXXXXXXX          XXXXX(T)XXXXX(T)XXX      -",
+ "-                                    XXXXXXXXXXXX         XXXXXXXXXXXXXXXXXX      -",
+ "-                                       XXXXXXXXXXX         XXXXXXXXXXXXXXX       -",
+ "-                                         XXXXXXXXXXX           XXXXXXXXXX        -",
+ "-                                            XXXXXXX              XXXXXX          -",
+ "-               IIIIII                             XXXXXXXX                       -",
+ "-             IIII  IIII                             XXXXXXXXX                    -",
+ "-            III   XXXXX                          XXXXXXXXXXX                     -",
+ "-            I      XXXXX                      XXXXXXXXXXXXX                      -",
+ "-                   XXXXXXX                 XXXXXXXXXXXXX                         -",
+ "-                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX                               -",
+ "-                           XXXXXXXXXXXXXXXXXXX                                   -",
+ "-                                XXXXXXXXXX                                       -",
+ "-                                                                                 -",
+ "-                                                                                 -",
+ "-----------------------------------------------------------------------------------" };
+
+string init_outro_map2[OUTRO_HEIGHT] =
+{"                                                                                   ",
+ "-----------------------------------------------------------------------------------",
+ "-                                                                                 -",
+ "-                                                                                 -",
+ "-          *********************                                                  -",
+ "-          *     GAME OVER     *                                                  -",
+ "-          *********************                                                  -",
+ "-                                               XXXXXXXXXXXX                      -",
+ "-           SCORE :                       XXXXXXXXXXXXXXXXXXXXXX                  -",
+ "-                                     XXXXXXXXXXXXXXX     XXXXXXX                 -",
+ "-             RESTART             XXXXXXXXXXX               XXXXXXXX              -",
+ "-             RANK              XXXXXXXXXXXX               XXXXXXXXXXXX           -",
+ "-             EXIT             XXXXXXXXXX                  XXXXXXXXXXXXXXXX       -",
+ "-                                 XXXXXXXXXXXXX          XXXXX(T)XXXXX(T)XXX      -",
+ "-                                    XXXXXXXXXXXX         XXXX I XXXXX I XXX      -",
+ "-                                       XXXXXXXXXXX         XX I XXXXX I XX       -",
+ "-                                         XXXXXXXXXXX           XXXXXXXXXX        -",
+ "-                                            XXXXXXX              XXXXXX          -",
+ "-               IIIIII                             XXXXXXXX                       -",
+ "-             IIII  IIII                             XXXXXXXXX                    -",
+ "-            III   XXXXX                          XXXXXXXXXXX                     -",
+ "-            I      XXXXX                      XXXXXXXXXXXXX                      -",
+ "-                   XXXXXXX                 XXXXXXXXXXXXX                         -",
+ "-                      XXXXXXXXXXXXXXXXXXXXXXXXXXXX                               -",
+ "-                           XXXXXXXXXXXXXXXXXXX                                   -",
+ "-                                XXXXXXXXXX                                       -",
+ "-                                                                                 -",
+ "-                                                                                 -",
+ "-----------------------------------------------------------------------------------" };
+
+Intro::Intro() 
 {
 
 }
 
-Outro::Outro()
+Outro::Outro(int score) 
 {
-
+	this->score = score;
 }
 
-void Intro::Draw_Tro(int num, int cnt)
+void Intro::Draw_Tro(int num, int cnt) 
 {
 	system("cls");
 
@@ -113,12 +175,48 @@ void Intro::Draw_Tro(int num, int cnt)
 	}
 }
 
-void Outro::Draw_Tro(int num, int cnt)
+void Outro::Draw_Tro(int num, int cnt) 
 {
+	system("cls");
 
+	if (cnt % 2 == 0) {
+		for (int i = 0; i < OUTRO_HEIGHT; i++)
+			this->outro_map[i] = init_outro_map1[i];
+	}
+	else {
+		for (int i = 0; i < OUTRO_HEIGHT; i++)
+			this->outro_map[i] = init_outro_map2[i];
+	}
+
+	if (this->score / 10 != 0) {
+		this->outro_map[8][20] = this->score / 10 + '0';
+		this->outro_map[8][21] = this->score % 10 + '0';
+	}
+	else {
+		this->outro_map[8][21] = this->score % 10 + '0';
+	}
+	
+
+	switch (num)
+	{
+	case 1:
+		this->outro_map[10][12] = '>';
+		break;
+	case 2:
+		this->outro_map[11][12] = '>';
+		break;
+	case 3:
+		this->outro_map[12][12] = '>';
+		break;
+	default:
+		break;
+	}
+	for (int i = 0; i < OUTRO_HEIGHT; i++) {
+		cout << this->outro_map[i] << endl;
+	}
 }
 
-int Intro::Select_Menu()
+int Intro::Select_Menu() 
 {
 	int num = 1;
 	int input = Error;
@@ -162,6 +260,6 @@ int Intro::Select_Menu()
 				break;
 			}
 		}
-		Sleep(PAUSE_LENGTH/4);
+		Sleep(PAUSE_LENGTH);
 	}
 }

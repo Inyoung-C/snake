@@ -3,7 +3,7 @@
 
 using namespace std;
 
-enum Direction Get_Input()
+enum Direction get_input()
 {
     enum Direction result = East;
     char user_input = _getch();

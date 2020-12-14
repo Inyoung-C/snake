@@ -11,7 +11,7 @@ class Intro
 {
 public:
 	Intro();
-	void Draw_Tro(int num, int cnt);
+	virtual void Draw_Tro(int num, int cnt);
 	int Select_Menu();
 private:
 	string intro_map[INTRO_HEIGHT];
@@ -20,11 +20,11 @@ private:
 class Outro : public Intro
 {
 public:
-	Outro();
+	Outro(int);
 	void Draw_Tro(int num, int cnt);
-	int Select_Menu();
 private:
 	string outro_map[OUTRO_HEIGHT];
+	int score;
 };
 
 #endif
